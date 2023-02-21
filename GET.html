@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AJAX GET</title>
+        <style>
+            #result {
+                width: 200px;
+                height: 200px;
+                border: solid 1px red;
+            }
+        </style>
+    </head>
+    <body>
+        <button>Click to send request</button>
+        <div id="result"></div>
+
+        <script>
+            const btn = document.getElementsByTagName("button")[0];
+            btn.onclick = function () {
+                // console.log("test");
+                //建立對象
+                const xhr = new XMLHttpRequest();
+                //初始化 設定請求方法和url
+                xhr.open("GET");
+                //發送
+                xhr.send();
+                //事件綁定，處理服務端返回的結果
+                //on:當...的時候
+                //readystate:xhr對象中的屬性，表示狀態0,1,2,3,4
+                //change:改變
+                xhr.onreadystatechange = function () {};
+            };
+        </script>
+    </body>
+</html>
