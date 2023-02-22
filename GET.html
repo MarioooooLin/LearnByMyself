@@ -31,7 +31,18 @@
                 //on:當...的時候
                 //readystate:xhr對象中的屬性，表示狀態0,1,2,3,4
                 //change:改變
-                xhr.onreadystatechange = function () {};
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            //響應行
+                            console.log(xhr.status);
+                            console.log(xhr.statusText);
+                            console.log(xjr.getAllResponseHeaders());
+                            console.log(xhr.response);
+                        } else {
+                        }
+                    }
+                };
             };
         </script>
     </body>
