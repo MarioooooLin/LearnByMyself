@@ -1,0 +1,23 @@
+{
+  "name": "node-practice",
+  "version": "1.0.0",
+  "description": "This is a simple npm practice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarioooooLin/LearnByMyself.git"
+  },
+  "author": "Mario",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarioooooLin/LearnByMyself/issues"
+  },
+  "homepage": "https://github.com/MarioooooLin/LearnByMyself#readme",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+}
