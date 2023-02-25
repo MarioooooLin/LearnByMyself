@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>列表渲染</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.common.dev.min.js"
+            integrity="sha512-2A6oxj7+YhJZ8H16zFL3m9eseO00e6odrsd+wQnSYiEcaw20fpsI3NSuiKQTBrGOR5ZO7xv75kjK3NZrvUTexw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+    <body>
+        <div id="root">
+            <h1>Person List</h1>
+            <ul>
+                <li v-for="person in persons" :key="person.id">{{person.name}}-{{person.age}}</li>
+            </ul>
+            <hr />
+            <h1>Car</h1>
+            <ul>
+                <li v-for="(value,k) in car" :key="k">{{k}}-{{value}}</li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: "001", name: "Mario", age: 28 },
+                    { id: "002", name: "Maria", age: 38 },
+                    { id: "003", name: "Mar", age: 18 },
+                ],
+                car: {
+                    name: "banz",
+                    price: 1000000000,
+                    color: "white",
+                },
+            },
+        });
+    </script>
+</html>

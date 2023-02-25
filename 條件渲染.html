@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>條件渲染</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.common.dev.min.js"
+            integrity="sha512-2A6oxj7+YhJZ8H16zFL3m9eseO00e6odrsd+wQnSYiEcaw20fpsI3NSuiKQTBrGOR5ZO7xv75kjK3NZrvUTexw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+    <body>
+        <div id="root">
+            <!-- v-if:適用切換頻率低的元素，沒顯示的DOM元素直接移除， -->
+
+            <h2>目前n值是:{{n}}</h2>
+            <button @click="n++">+1</button>
+
+            <!-- <div v-show="n===1">Hi</div>
+            <div v-show="n===2">HiHi</div>
+            <div v-show="n===3">HiHiHi</div> -->
+            <div v-if="n===1">Hi</div>
+            <div v-if="n===2">HiHi</div>
+            <div v-if="n===3">HiHiHi</div>
+
+            <div v-show="n===4">
+                <div>Good</div>
+                <div>Morning</div>
+                <div>Ya</div>
+            </div>
+
+            <!-- v-if搭配template -->
+            <template v-if="n===5">
+                <div>
+                    <h2>HDO</h2>
+                    <h2>NiHao</h2>
+                    <h1>Test</h1>
+                </div>
+            </template>
+
+            <!-- v-show條件渲染 -->
+            <!-- <h2 v-show="false">Welcome to {{name}}</h2> -->
+            <!-- <h2 v-show="1===1">Welcome to {{name}}</h2> -->
+
+            <!-- v-if條件渲染 -->
+            <!-- <h2 v-if="false">Welcome to {{name}}</h2> -->
+            <!-- <h2 v-if="1===1">Welcome to {{name}}</h2> -->
+        </div>
+    </body>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "my Home",
+                n: 0,
+            },
+        });
+    </script>
+</html>
