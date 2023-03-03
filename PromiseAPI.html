@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PromiseAPI</title>
+    </head>
+    <body>
+        <input type="text" id="name" />
+        <input type="number" id="delay" />
+        <button id="set">Setting</button>
+        <div id="output"></div>
+    </body>
+    <script>
+        const name = document.querySelector("#name");
+        const delay = document.querySelector("#delay");
+        const set = document.querySelector("#set");
+        const output = document.querySelector("#output");
+
+        //return Promise object
+        //pending 的delay秒=>fulfilled
+        //若delay < 0 => reject
+        function alarm(person, delay) {
+            // setTimeout(() => {
+            //     output.innerHTML = person + " wake up!";
+            // }, delay);
+
+            return new Promise((resolve, reject) => {
+                if (delay < 0) {
+                    reject("delay can't < 0");
+                } else {
+                    setTimeout(() => {
+                        resolve(person + " wake up!");
+                    }, delay);
+                }
+            });
+        }
+
+        // set.addEventListener("click", (e) => {
+        //     //1.第一種
+        //     // console.log("Your clicking the button");
+        //     // alarm(name.value, delay.value);
+
+        //     //2.第二種
+        //     // let promiseObj = alarm(name.value, delay.value);
+        //     // promiseObj
+        //     //     .then((message) => {
+        //     //         output.innerHTML = message;
+        //     //     })
+        //     //     .catch((e) => {
+        //     //         output.innerHTML = e;
+        //     //     });
+        // });
+
+        //3.第三種
+        set.addEventListener("click", async () => {
+            try {
+                let result = await alarm(name.value, delay.value);
+                output.innerHTML = result;
+            } catch (e) {
+                output.innerHTML = e;
+            }
+        });
+    </script>
+</html>
