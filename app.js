@@ -34,6 +34,30 @@ class Fruit {
         drawingContext.fillStyle = "red";
         drawingContext.fillRect(this.x, this.y, unit, unit);
     }
+    newLocation() {
+        let overlap = false;
+        let newX;
+        let newY;
+
+        function checkOverlap(newX, newY) {
+            for (let i = 0; i < snake.length; i++) {
+                if (newX == snake[i].x && newY == snake[i].y) {
+                    overlap = true;
+                    return;
+                } else {
+                    overlap = false;
+                }
+            }
+        }
+        do {
+            newX = Math.floor(Math.random() * col) * unit;
+            newY = Math.floor(Math.random() * row) * unit;
+            checkOverlap(newX, newY);
+        } while (overlap);
+
+        this.x = newX;
+        this.y = newY;
+    }
 }
 let myFruit = new Fruit();
 
@@ -110,8 +134,11 @@ function draw() {
     };
 
     //Check the snake eat the fruit or not
-    // if(){}
-    snake.pop();
+    if (snake[0].x == myFruit.x && snake[0].y == myFruit.y) {
+        myFruit.newLocation();
+    } else {
+        snake.pop();
+    }
     snake.unshift(newHead);
 }
 
