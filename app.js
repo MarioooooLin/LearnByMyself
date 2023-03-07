@@ -58,6 +58,19 @@ function draw() {
         }
         drawingContext.strokeStyle = "white";
 
+        if (snake[i].x >= canvas.width) {
+            snake[i].x = 0;
+        }
+        if (snake[i].x < 0) {
+            snake[i].x = canvas.width - unit;
+        }
+        if (snake[i].y >= canvas.height) {
+            snake[i].y = 0;
+        }
+        if (snake[i].y < 0) {
+            snake[i].y = canvas.height - unit;
+        }
+
         //fillRect(x,y,width,height)
         drawingContext.fillRect(snake[i].x, snake[i].y, unit, unit);
         drawingContext.strokeRect(snake[i].x, snake[i].y, unit, unit);
@@ -88,4 +101,5 @@ function draw() {
     snake.unshift(newHead);
 }
 
+// Each 0.15s process draw
 let myGame = setInterval(draw, 100);
