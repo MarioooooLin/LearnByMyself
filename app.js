@@ -25,15 +25,50 @@ snake[3] = {
     y: 0,
 };
 
-for (let i = 0; i < snake.length; i++) {
-    if (i == 0) {
-        drawingContext.fillStyle = "green";
-    } else {
-        drawingContext.fillStyle = "lightblue";
-    }
-    drawingContext.strokeStyle = "white";
+let dir = "right";
 
-    //fillRect(x,y,width,height)
-    drawingContext.fillRect(snake[i].x, snake[i].y, unit, unit);
-    drawingContext.strokeRect(snake[i].x, snake[i].y, unit, unit);
+function draw() {
+    console.log("Drawing...");
+    //let back-ground all black
+    drawingContext.fillStyle = "black";
+    drawingContext.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < snake.length; i++) {
+        if (i == 0) {
+            drawingContext.fillStyle = "green";
+        } else {
+            drawingContext.fillStyle = "lightblue";
+        }
+        drawingContext.strokeStyle = "white";
+
+        //fillRect(x,y,width,height)
+        drawingContext.fillRect(snake[i].x, snake[i].y, unit, unit);
+        drawingContext.strokeRect(snake[i].x, snake[i].y, unit, unit);
+    }
+
+    //According the direction of dir to decide the coordinate of snake
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if (dir == "left") {
+        snakeX -= unit;
+    } else if (dir == "up") {
+        snakeY -= unit;
+    } else if (dir == "right") {
+        snakeX += unit;
+    } else if (dir == "down") {
+        snakeY += unit;
+    }
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY,
+    };
+
+    //Check the snake eat the fruit or not
+    // if(){}
+    snake.pop();
+    snake.unshift(newHead);
 }
+
+let myGame = setInterval(draw, 100);
