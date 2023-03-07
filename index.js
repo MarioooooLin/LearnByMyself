@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+//middleWares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //HTTP request:GET,POST,PUT,DELETE
 app.get("/", (req, res) => {
     res.send("welcome to INDEX");
@@ -35,7 +39,29 @@ app.get("/redirect", (req, res) => {
     res.redirect("/true");
 });
 
+app.get("/thing/:something", (req, res) => {
+    console.log(req.params.something);
+    console.log(req.params);
+    res.send("Welcome to " + req.params.something + ", have a nice day~");
+});
+
+app.get("/handleForm", (req, res) => {
+    console.log(req.query);
+    res.send("RECEIVED,thank you " + req.query.name);
+});
+
+app.post("/account", (req, res) => {
+    console.log(req.body);
+    let { email, password } = req.body;
+    res.send("Your email is " + email);
+});
+
+//Need to be put on the last position
+app.get("*", (req, res) => {
+    res.send("Page not found");
+});
+
 //port, callback
 app.listen(3000, () => {
-    console.log("port 3000 listening");
+    console.log("Port 3000 is listening");
 });
