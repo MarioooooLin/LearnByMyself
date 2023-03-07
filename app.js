@@ -25,7 +25,24 @@ snake[3] = {
     y: 0,
 };
 
+window.addEventListener("keydown", changeDir);
 let dir = "right";
+function changeDir(e) {
+    console.log(e);
+    if (e.key == "ArrowLeft" && dir != "right") {
+        dir = "left";
+        console.log("You press the left");
+    } else if (e.key == "ArrowRight" && dir != "left") {
+        dir = "right";
+        console.log("You press the right");
+    } else if (e.key == "ArrowDown" && dir != "up") {
+        dir = "down";
+        console.log("You press the down");
+    } else if (e.key == "ArrowUp" && dir != "down") {
+        dir = "up";
+        console.log("You press the up");
+    }
+}
 
 function draw() {
     console.log("Drawing...");
