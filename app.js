@@ -25,6 +25,18 @@ snake[3] = {
     y: 0,
 };
 
+class Fruit {
+    constructor() {
+        this.x = Math.floor(Math.random() * col) * unit;
+        this.y = Math.floor(Math.random() * row) * unit;
+    }
+    setFruit() {
+        drawingContext.fillStyle = "red";
+        drawingContext.fillRect(this.x, this.y, unit, unit);
+    }
+}
+let myFruit = new Fruit();
+
 window.addEventListener("keydown", changeDir);
 let dir = "right";
 function changeDir(e) {
@@ -49,6 +61,8 @@ function draw() {
     //let back-ground all black
     drawingContext.fillStyle = "black";
     drawingContext.fillRect(0, 0, canvas.width, canvas.height);
+
+    myFruit.setFruit();
 
     for (let i = 0; i < snake.length; i++) {
         if (i == 0) {
