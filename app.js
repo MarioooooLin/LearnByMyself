@@ -7,23 +7,24 @@ const col = canvas.width / unit;
 
 //snake body
 let snake = [];
-// store the x,y
-snake[0] = {
-    x: 80,
-    y: 0,
-};
-snake[1] = {
-    x: 60,
-    y: 0,
-};
-snake[2] = {
-    x: 40,
-    y: 0,
-};
-snake[3] = {
-    x: 20,
-    y: 0,
-};
+function newSnake() {
+    snake[0] = {
+        x: 80,
+        y: 0,
+    };
+    snake[1] = {
+        x: 60,
+        y: 0,
+    };
+    snake[2] = {
+        x: 40,
+        y: 0,
+    };
+    snake[3] = {
+        x: 20,
+        y: 0,
+    };
+}
 
 class Fruit {
     constructor() {
@@ -31,7 +32,7 @@ class Fruit {
         this.y = Math.floor(Math.random() * row) * unit;
     }
     setFruit() {
-        drawingContext.fillStyle = "red";
+        drawingContext.fillStyle = "yellow";
         drawingContext.fillRect(this.x, this.y, unit, unit);
     }
     newLocation() {
@@ -59,12 +60,15 @@ class Fruit {
         this.y = newY;
     }
 }
+
+newSnake();
+
 let myFruit = new Fruit();
 
 window.addEventListener("keydown", changeDir);
 let dir = "right";
 function changeDir(e) {
-    console.log(e);
+    //console.log(e);
     if (e.key == "ArrowLeft" && dir != "right") {
         dir = "left";
         console.log("You press the left");
@@ -78,10 +82,23 @@ function changeDir(e) {
         dir = "up";
         console.log("You press the up");
     }
+
+    // To avoid the continue press button and cause the lose,don't accept the keydown before draw the next page snake
+    window.removeEventListener("keydown", changeDir);
 }
 
 function draw() {
     console.log("Drawing...");
+
+    //Check the snake status
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
+            clearInterval(myGame);
+            alert("LOSE");
+            return;
+        }
+    }
+
     //let back-ground all black
     drawingContext.fillStyle = "black";
     drawingContext.fillRect(0, 0, canvas.width, canvas.height);
@@ -140,6 +157,7 @@ function draw() {
         snake.pop();
     }
     snake.unshift(newHead);
+    window.addEventListener("keydown", changeDir);
 }
 
 // Each 0.15s process draw
