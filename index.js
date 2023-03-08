@@ -1,9 +1,23 @@
 const express = require("express");
 const app = express();
 
-//middleWares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+//middleWares I
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+//middleWare II
+// demonstrate middleware use for account
+app.use((req, res, next) => {
+    if (req.permission == false) {
+        res.send("Please log in");
+    } else {
+        next();
+    }
+});
+app.use((req, res, next) => {
+    console.log("Process the second middleware");
+    next();
+});
 
 //HTTP request:GET,POST,PUT,DELETE
 app.get("/", (req, res) => {
