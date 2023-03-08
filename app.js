@@ -5,6 +5,13 @@ const unit = 20;
 const row = canvas.height / unit;
 const col = canvas.width / unit;
 
+let highScore;
+loadScore();
+document.getElementById("highestScore").innerHTML = "Highest Score: " + highScore;
+
+let score = 0;
+document.getElementById("myScore").innerHTML = "My Score: " + score;
+
 //snake body
 let snake = [];
 function newSnake() {
@@ -26,6 +33,8 @@ function newSnake() {
     };
 }
 
+newSnake();
+//fruit
 class Fruit {
     constructor() {
         this.x = Math.floor(Math.random() * col) * unit;
@@ -61,12 +70,11 @@ class Fruit {
     }
 }
 
-newSnake();
-
 let myFruit = new Fruit();
 
 window.addEventListener("keydown", changeDir);
 let dir = "right";
+
 function changeDir(e) {
     //console.log(e);
     if (e.key == "ArrowLeft" && dir != "right") {
@@ -153,12 +161,31 @@ function draw() {
     //Check the snake eat the fruit or not
     if (snake[0].x == myFruit.x && snake[0].y == myFruit.y) {
         myFruit.newLocation();
+        score++;
+        setScore(score);
     } else {
         snake.pop();
     }
+    document.getElementById("myScore").innerHTML = "My Score: " + score;
+    document.getElementById("highestScore").innerHTML = "Highest Score: " + highScore;
+
     snake.unshift(newHead);
     window.addEventListener("keydown", changeDir);
 }
 
 // Each 0.15s process draw
 let myGame = setInterval(draw, 100);
+
+function loadScore() {
+    if (localStorage.getItem("highScore") == null) {
+        highScore = 0;
+    } else {
+        highScore = Number(localStorage.getItem("highScore"));
+    }
+}
+
+function setScore(score) {
+    if (score > highScore) {
+        localStorage.setItem("highScore", score);
+    }
+}
