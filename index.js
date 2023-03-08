@@ -74,6 +74,7 @@ app.post("/account", (req, res) => {
 
 //Need to be put on the last position
 app.get("*", (req, res) => {
+    res.status(404);
     res.send("Page not found");
 });
 
