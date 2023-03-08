@@ -19,9 +19,11 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.static("public"));
+
 //HTTP request:GET,POST,PUT,DELETE
 app.get("/", (req, res) => {
-    res.send("welcome to INDEX");
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/anotherPage", (req, res) => {
