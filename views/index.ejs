@@ -5,14 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>EJS</title>
+        <link rel="stylesheet" href="/style.css" />
     </head>
 
     <body>
-        <h1>This is a EJS page</h1>
-        <h2>This is <%= name %> 's website</h2>
-        <h1><%=name%></h1>
-        <% for( let i=0; i < 10; i++ ) { %> <%=i%> <% } %> <% for( let i=0; i < 10; i++ ) { %>
-        <h1><%= i %></h1>
-        <% } %> <% for( let i=0; i < 10; i++ ) { %> <%-string%> <% } %> -->
+        <!-- <form action="/example" method="get">
+        <label for="name">Name:</label>
+            <input type="text" name="name" id="name" />
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" />
+            <button>Send</button>
+        </form> -->
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Where</th>
+            </tr>
+            <% practice.forEach(person => { %>
+            <tr>
+                <td><%= person.name %></td>
+                <td><%= person.age %></td>
+                <td><%= person.Live %></td>
+            </tr>
+            <% }) %>
+        </table>
     </body>
 </html>
