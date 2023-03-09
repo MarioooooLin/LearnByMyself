@@ -1,0 +1,31 @@
+$color: blue;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    nav {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            li {
+                a {
+                    background-color: red;
+                    font-style: oblique;
+                }
+                div {
+                    background-color: $color;
+                }
+            }
+        }
+    }
+}
+// .1 {
+//     .2 {
+//         .3 {
+//             .4 {
+//             }
+//         }
+//     }
+// }

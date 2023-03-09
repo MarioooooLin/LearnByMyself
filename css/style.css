@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+header nav ul li a {
+  background-color: red;
+  font-style: oblique;
+}
+header nav ul li div {
+  background-color: blue;
+}/*# sourceMappingURL=style.css.map */
