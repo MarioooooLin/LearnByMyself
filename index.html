@@ -36,5 +36,23 @@
                 </ul>
             </nav>
         </header>
+        <main>
+            <section class="background">
+                <div class="filter"></div>
+                <h3>AAAAA，BBBBBBBBBB，<br />CCCCCCCCC</h3>
+            </section>
+        </main>
+        <script>
+            setInterval(() => {
+                let background = document.querySelector("section.background");
+                if (background.style.backgroundImage == 'url("../imgs/Spanish-1.jpg")') {
+                    background.style.backgroundImage = 'url("../imgs/Spanish-2.jpg")';
+                } else if (background.style.backgroundImage == 'url("../imgs/Spanish-2.jpg")') {
+                    background.style.backgroundImage = 'url("../imgs/Spanish-3.jpg")';
+                } else {
+                    background.style.backgroundImage == 'url("../imgs/Spanish-1.jpg")';
+                }
+            }, 200);
+        </script>
     </body>
 </html>
