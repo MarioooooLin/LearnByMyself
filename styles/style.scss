@@ -156,6 +156,33 @@ body {
             z-index: -1;
         }
     }
+
+    footer {
+        display: flex;
+        padding: 2rem;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+        section.logo {
+            img {
+                width: 20vw;
+                background-color: white;
+            }
+            h3 {
+                font-size: 2.5rem;
+            }
+        }
+        section.links {
+            margin-top: 2rem;
+            a {
+                img {
+                    width: 5vh;
+                    margin: 0rem 1rem;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 700px) {
