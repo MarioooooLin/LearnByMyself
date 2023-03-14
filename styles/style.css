@@ -22,10 +22,15 @@ body img.fixed-img {
   left: 0;
 }
 body header {
+  position: sticky;
+  top: 0;
+  z-index: 19;
   background-color: white;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  background-color: yellow;
+  box-shadow: 0 10px 6px -6px #777;
 }
 body header section.logo {
   flex: 2 1 400px;
