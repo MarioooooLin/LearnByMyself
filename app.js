@@ -57,6 +57,51 @@ app.get("/students/:_id", async (req, res) => {
     }
 });
 
+app.put("/students/:_id", async (req, res) => {
+    try {
+        let { _id } = req.params;
+        let { name, age, major, TWD, USD } = req.body;
+        let newData = await Student.findOneAndUpdate(
+            { _id },
+            { name, age, major, money: { TWD, USD } },
+            { new: true, runValidators: true, overwrite: true }
+        );
+        res.send({ msg: "Success update", updateData: newData });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
+class NewData {
+    constructor() {}
+    setProperty(key, value) {
+        if (key !== "TWD" && key !== "USD") {
+            this[key] = value;
+        } else {
+            this[`money.${key}`] = value;
+        }
+    }
+}
+
+app.patch("/students/:_id", async (req, res) => {
+    try {
+        let { _id } = req.params;
+        let newObj = new NewData();
+        for (let property in req.body) {
+            newObj.setProperty(property, req.body[property]);
+        }
+        console.log(req.body);
+        console.log(newObj);
+        let newData = await Student.findOneAndUpdate({ _id }, newObj, {
+            new: true,
+            runValidators: true,
+        });
+        res.send({ msg: "Success update", updateData: newData });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
 app.listen(4000, () => {
     console.log("Listening prot 4000...");
 });
