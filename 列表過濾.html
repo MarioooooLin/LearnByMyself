@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>列表過濾</title>
+        <title>列表排序</title>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.common.dev.min.js"
             integrity="sha512-2A6oxj7+YhJZ8H16zFL3m9eseO00e6odrsd+wQnSYiEcaw20fpsI3NSuiKQTBrGOR5ZO7xv75kjK3NZrvUTexw=="
@@ -16,6 +16,9 @@
         <div id="root">
             <h1>Person List</h1>
             <input type="text" placeholder="Enter the name" v-model="keyword" />
+            <button @click="sortType=1">Ascending</button>
+            <button @click="sortType=2">Descending</button>
+            <button @click="sortType=0">Origin</button>
             <ul>
                 <li v-for="person in filPersons" :key="person.id">{{person.name}}-{{person.age}}-{{person.gender}}</li>
             </ul>
@@ -26,6 +29,7 @@
         new Vue({
             el: "#root",
             data: {
+                sortType: 0, //1升序,2降序
                 keyword: "",
                 persons: [
                     { id: "001", name: "Mario", age: 28, gender: "Male" },
@@ -38,9 +42,15 @@
             },
             computed: {
                 filPersons() {
-                    return this.persons.filter((person) => {
+                    let arr = this.persons.filter((person) => {
                         return person.name.indexOf(this.keyword) !== -1;
                     });
+                    if (this.sortType) {
+                        arr.sort((a, b) => {
+                            return this.sortType === 1 ? a.age - b.age : b.age - a.age;
+                        });
+                    }
+                    return arr;
                 },
             },
 
