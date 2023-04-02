@@ -17,11 +17,19 @@
             <h1>Person List</h1>
             <ul>
                 <li v-for="person in persons" :key="person.id">{{person.name}}-{{person.age}}</li>
+
+                <li v-for="(person,index) of persons" ::key="index">{{person.name}}-{{person.age}}</li>
             </ul>
+
             <hr />
             <h1>Car</h1>
             <ul>
-                <li v-for="(value,k) in car" :key="k">{{k}}-{{value}}</li>
+                <li v-for="(value,key) in car" :key="key">{{key }}-{{value}}</li>
+            </ul>
+
+            <h1>String</h1>
+            <ul>
+                <li v-for="(a,b) in str">{{a}}--{{b}}</li>
             </ul>
         </div>
     </body>
@@ -40,6 +48,7 @@
                     price: 1000000000,
                     color: "white",
                 },
+                str: "Hello",
             },
         });
     </script>
