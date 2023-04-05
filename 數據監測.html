@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>數據監測</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.common.dev.min.js"
+            integrity="sha512-2A6oxj7+YhJZ8H16zFL3m9eseO00e6odrsd+wQnSYiEcaw20fpsI3NSuiKQTBrGOR5ZO7xv75kjK3NZrvUTexw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+    <body>
+        <div id="root">
+            <button @click="student.age++">Age+1</button>
+            <button @click="addGender">Add the gender</button>
+            <button @click="student.gender='Female'">Change gender</button>
+            <button @click.once="addFriend">Add Friend</button>
+            <button @click="updateFirst">Update first friend</button>
+            <button @click.once="addHobby">Add hobby</button>
+            <button @click="updateHobby">Update hobby</button>
+            <button @click="filterSmoke">Filter smoke</button>
+            <h1>Student Information</h1>
+            <h3>Name: {{student.name}}</h3>
+            <h3>Age:{{student.age}}</h3>
+            <h3 v-if="student.gender">Gender:{{student.gender}}</h3>
+            <h3>Hobby:</h3>
+            <ul>
+                <li v-for="(h, index) in student.hobby" :key="index">{{h}}</li>
+            </ul>
+            <h3>Friends</h3>
+            <ul>
+                <li v-for="(f, index) in student.friends" :key="index">{{f.name}}--{{f.age}}</li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                student: {
+                    name: "Mario",
+                    age: 28,
+                    hobby: ["Smoke", "Drink", "Play"],
+                    friends: [
+                        { name: "Max", age: 39 },
+                        { name: "Maria", age: 29 },
+                    ],
+                },
+            },
+            methods: {
+                addGender() {
+                    this.$set(this.student, "gender", "Male");
+                },
+                addFriend() {
+                    this.student.friends.unshift({ name: "Jack", age: 40 });
+                },
+                updateFirst() {
+                    this.student.friends[0].name = "Sen";
+                },
+                addHobby() {
+                    this.student.hobby.push("Learn");
+                },
+                updateHobby() {
+                    // this.student.hobby.splice(0, 1, "Drive");
+                    Vue.set(this.student.hobby, 0, "Drive");
+                },
+                filterSmoke() {
+                    this.student.hobby = this.student.hobby.filter((h) => {
+                        return h !== "Smoke";
+                    });
+                },
+            },
+        });
+    </script>
+</html>
