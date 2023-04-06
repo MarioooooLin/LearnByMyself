@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Collect the form data</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.common.dev.min.js"
+            integrity="sha512-2A6oxj7+YhJZ8H16zFL3m9eseO00e6odrsd+wQnSYiEcaw20fpsI3NSuiKQTBrGOR5ZO7xv75kjK3NZrvUTexw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+    <body>
+        <div id="root">
+            <form action="" @submit.prevent="send">
+                <label for="account">Account:</label><input type="text" id="account" v-model="account" /><br /><br />
+                <label for="password">Password:</label
+                ><input type="password" id="password" v-model="password" /><br /><br />
+                <label for="gender">Gender:</label>
+                Male<input type="radio" name="gender" id="gender" value="male" v-model="gender" /> Female<input
+                    type="radio"
+                    name="gender"
+                    id="gender"
+                    value="female"
+                    v-model="gender"
+                />
+                <br /><br />
+                <label for="hobby">Hobby:</label>
+                Learn <input type="checkbox" name="hobby" id="hobby" value="learn" v-model="hobby" /> Play
+                <input type="checkbox" name="hobby" id="hobby" value="play" v-model="hobby" /> Sleep
+                <input type="checkbox" name="hobby" id="hobby" value="sleep" v-model="hobby" /><br /><br />
+                <label for="school">School:</label
+                ><select name="" id="" v-model="city">
+                    <option value="">Please select</option>
+                    <option value="KH">KH</option>
+                    <option value="TP">TP</option>
+                    <option value="TC">TC</option>
+                </select>
+                <br /><br />
+                <label for="">Others:</label>
+                <textarea name="" id="" cols="30" rows="10" v-model.lazy="other"></textarea><br /><br />
+                <input type="checkbox" name="" id="" v-model="agree" />
+                Agree the agreement <a href="#">Agreement</a> <br /><br />
+                <button style="margin: 0px 50px">Submit</button><button>Cancel</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                account: "",
+                password: "",
+                gender: "",
+                hobby: [],
+                city: "",
+                other: "",
+                agree: "",
+            },
+            methods: {
+                send() {
+                    alert("Send!");
+                    alert(JSON.stringify(this._data));
+                    console.log(JSON.stringify(this._data));
+                },
+            },
+        });
+    </script>
+</html>
