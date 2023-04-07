@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>內建指令</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+    <body>
+        <div id="root">
+            <div>{{name}}</div>
+            <div v-text="name"></div>
+            <div v-text="str"></div>
+            //不支持結構解析
+            <div v-html="str"></div>
+            //支持結構解析
+            <h3 v-once>Origin:{{n}}</h3>
+            //初次渲染完後就變為靜態內容
+            <h3>Now:{{n}}</h3>
+            <button @click="n++">n+1</button>
+
+            <h3 v-pre>Now:{{n}}</h3>
+            <button v-pre @click="n++">n+1</button>
+            //跳過此節點編譯過程，通常用於無使用vue的地方使網頁加快速度
+        </div>
+    </body>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                name: "Mario",
+                str: "<h1>Hello!</h1>",
+                n: 1,
+            },
+        });
+    </script>
+</html>
