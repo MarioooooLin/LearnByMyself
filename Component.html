@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Component</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+    <body>
+        <div id="root">
+            <h1>{{msg}}</h1>
+            <school></school>
+            <school></school>
+            <hr />
+            <student></student>
+            <student></student>
+
+            <hi></hi>
+        </div>
+        <hr />
+        <hr />
+        <div id="root2">
+            <hi></hi>
+        </div>
+    </body>
+    <script>
+        Vue.config.productionTip = false;
+
+        const school = Vue.extend({
+            template: `
+                    <div>
+                        <h2>School:{{schoolName}}</h2>
+                        <h2>Address:{{address}}</h2>
+                        <button @click="show">Click</button>
+                    </div>
+                    `,
+            data() {
+                return {
+                    schoolName: "QQQQQQQQ",
+                    address: "ASDFGGHHJA",
+                };
+            },
+            methods: {
+                show() {
+                    alert(this.schoolName);
+                },
+            },
+        });
+
+        const student = Vue.extend({
+            template: `
+                    <div>
+                    <h2>Student:{{studentName}}</h2>
+                    <h2>Age:{{age}}</h2>
+                    </div>
+                    `,
+            data() {
+                return {
+                    studentName: "Mario",
+                    age: 24,
+                };
+            },
+        });
+
+        const hi = Vue.extend({
+            template: `
+            <div>
+                <h2>HiHiHiHiHiHi{{name}}</h2>
+                </div>
+            `,
+            data() {
+                return {
+                    name: "Jack",
+                };
+            },
+        });
+        Vue.component("hi", hi);
+
+        new Vue({
+            el: "#root",
+            data: {
+                msg: "Hello",
+            },
+            components: {
+                school: school,
+                student: student,
+            },
+        });
+
+        new Vue({
+            el: "#root2",
+        });
+    </script>
+</html>
