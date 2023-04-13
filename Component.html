@@ -27,12 +27,28 @@
     <script>
         Vue.config.productionTip = false;
 
+        const student1 = {
+            template: `
+                    <div>
+                    <h2>Student:{{studentName}}</h2>
+                    <h2>Age:{{age}}</h2>
+                    </div>
+                    `,
+            data() {
+                return {
+                    studentName: "Maria",
+                    age: 20,
+                };
+            },
+        };
+
         const school = Vue.extend({
             template: `
                     <div>
                         <h2>School:{{schoolName}}</h2>
                         <h2>Address:{{address}}</h2>
                         <button @click="show">Click</button>
+                        <student1></student1>
                     </div>
                     `,
             data() {
@@ -45,6 +61,9 @@
                 show() {
                     alert(this.schoolName);
                 },
+            },
+            components: {
+                student1,
             },
         });
 
@@ -83,8 +102,8 @@
                 msg: "Hello",
             },
             components: {
-                school: school,
-                student: student,
+                school,
+                student,
             },
         });
 

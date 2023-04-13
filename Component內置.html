@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Component內置關係</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script>
+        Vue.config.productionTip = false;
+        function demo() {
+            this.a = 1;
+            this.b = 2;
+        }
+
+        const d = new demo();
+
+        console.log(demo.prototype);
+        console.log(d.__proto__);
+
+        demo.prototype.x = 10;
+        console.log("asd" + d.__proto__.x);
+    </script>
+</html>
